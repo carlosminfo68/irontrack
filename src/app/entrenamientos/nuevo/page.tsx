@@ -22,14 +22,16 @@ export default function NuevoEntrenamientoPage() {
     titulo: '',
     distancia_km: '',
     duracion_minutos: '',
-    fecha: new Date().toISOString().slice(0, 16), // formato datetime-local
+    fecha: new Date().toISOString().slice(0, 16),
     elevacion_m: '',
     velocidad_media_kmh: '',
     fc_media: '',
     notas: '',
   })
 
-     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,9 +54,9 @@ export default function NuevoEntrenamientoPage() {
       duracion_minutos: form.duracion_minutos ? parseInt(form.duracion_minutos) : 0,
       fecha: new Date(form.fecha).toISOString(),
       elevacion_m: form.elevacion_m ? parseFloat(form.elevacion_m) : 0,
-     velocidad_media_kmh: form.velocidad_media_kmh ? parseFloat(form.velocidad_media_kmh) : null,
+      velocidad_media_kmh: form.velocidad_media_kmh ? parseFloat(form.velocidad_media_kmh) : null,
       fc_media: form.fc_media ? parseInt(form.fc_media) : null,
-            notas: form.notas || null,
+      notas: form.notas || null,
     }
 
     const { error } = await supabase.from('activities').insert(dataToInsert)
@@ -150,7 +152,7 @@ export default function NuevoEntrenamientoPage() {
             />
           </div>
 
-          {/* Distancia y Duración (lado a lado) */}
+          {/* Distancia y Duración */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">Distancia (km)</label>
@@ -179,7 +181,7 @@ export default function NuevoEntrenamientoPage() {
             </div>
           </div>
 
-          {/* Velocidad, Elevación, FC (lado a lado) */}
+          {/* Velocidad, Elevación, FC */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">Vel. media (km/h)</label>
@@ -220,7 +222,8 @@ export default function NuevoEntrenamientoPage() {
               />
             </div>
           </div>
-                    {/* Notas */}
+
+          {/* Notas */}
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">Notas / Sensaciones</label>
             <textarea
@@ -232,6 +235,7 @@ export default function NuevoEntrenamientoPage() {
               className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 resize-none"
             />
           </div>
+
           {/* Botón guardar */}
           <button
             type="submit"

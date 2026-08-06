@@ -88,9 +88,10 @@ export default function EntrenamientosPage() {
   const totalHoras = Math.round(
     activities.reduce((sum, a) => sum + (Number(a.duracion_minutos) || 0), 0) / 60
   )
-    const downloadCSV = () => {
-     const headers = ['Fecha', 'Tipo', 'Titulo', 'Distancia_km', 'Duracion_min', 'Velocidad_media_kmh', 'Elevacion_m', 'FC_media', 'Notas']
-       const rows = activities.map((a) => [
+
+  const downloadCSV = () => {
+    const headers = ['Fecha', 'Tipo', 'Titulo', 'Distancia_km', 'Duracion_min', 'Velocidad_media_kmh', 'Elevacion_m', 'FC_media', 'Notas']
+    const rows = activities.map((a) => [
       a.fecha,
       a.tipo,
       `"${(a.titulo || '').replace(/"/g, '""')}"`,
@@ -102,7 +103,8 @@ export default function EntrenamientosPage() {
       `"${(a.notas || '').replace(/"/g, '""')}"`,
     ])
 
-    const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')
+    const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('
+')
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
@@ -133,7 +135,7 @@ export default function EntrenamientosPage() {
               {activities.length} actividades · {totalKm} km · {totalHoras} h totales
             </p>
           </div>
-                    <div className="flex gap-3">
+          <div className="flex gap-3">
             <Link
               href="/dashboard"
               className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"

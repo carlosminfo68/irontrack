@@ -88,6 +88,28 @@ export default function EntrenamientosPage() {
   const totalHoras = Math.round(
     activities.reduce((sum, a) => sum + (Number(a.duracion_minutos) || 0), 0) / 60
   )
+    const downloadCSV = () => {
+    const headers = ['Fecha', 'Tipo', 'Titulo', 'Distancia_km', 'Duracion_min', 'Velocidad_media_kmh', 'Elevacion_m']
+    const rows = activities.map((a) => [
+      a.fecha,
+      a.tipo,
+      `"${(a.titulo || '').replace(/"/g, '""')}"`,
+      a.distancia_km || 0,
+      a.duracion_minutos || 0,
+      a.velocidad_media_kmh || '',
+      a.elevacion_m || 0,
+    ])
+
+    const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `entrenamientos_irontrack_${new Date().toISOString().split('T')[0]}.csv`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   if (loading) {
     return (
@@ -118,6 +140,12 @@ export default function EntrenamientosPage() {
             </Link>
             <Link
               href="/entrenamientos/nuevo"
+                          <button
+              onClick={downloadCSV}
+              className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition"
+            >
+              📥 CSV
+            </button>
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
             >
               + Nuevo

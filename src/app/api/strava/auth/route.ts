@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   }
 
   const clientId = process.env.STRAVA_CLIENT_ID
-  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/strava/callback`
+  const redirectUri = `${process.env.NEXT_PUBLIC_APP_URL || 'https://irontrack-ruby.vercel.app'}/api/strava/callback`
   const scope = 'read,activity:read_all'
   
   // Guardamos el user_id en "state" para recuperarlo cuando Strava nos devuelva

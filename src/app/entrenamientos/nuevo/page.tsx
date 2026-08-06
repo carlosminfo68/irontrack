@@ -52,7 +52,7 @@ export default function NuevoEntrenamientoPage() {
       duracion_minutos: form.duracion_minutos ? parseInt(form.duracion_minutos) : 0,
       fecha: new Date(form.fecha).toISOString(),
       elevacion_m: form.elevacion_m ? parseFloat(form.elevacion_m) : 0,
-      velocidad_media_kmh: form.velocidad_media_kmh ? parseFloat(form.velocidad_media_kmh) : null,
+     velocidad_media_kmh: form.velocidad_media_kmh ? parseFloat(form.velocidad_media_kmh) : null,
       fc_media: form.fc_media ? parseInt(form.fc_media) : null,
             notas: form.notas || null,
     }

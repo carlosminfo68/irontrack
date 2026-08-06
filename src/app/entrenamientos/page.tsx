@@ -140,16 +140,16 @@ export default function EntrenamientosPage() {
             </Link>
             <Link
               href="/entrenamientos/nuevo"
-                          <button
+             
+              + Nuevo
+
+            </Link>
+                        <button
               onClick={downloadCSV}
               className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition"
             >
               📥 CSV
             </button>
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
-            >
-              + Nuevo
-            </Link>
           </div>
         </div>
 

@@ -131,7 +131,7 @@ export default function EntrenamientosPage() {
               {activities.length} actividades · {totalKm} km · {totalHoras} h totales
             </p>
           </div>
-          <div className="flex gap-3">
+                    <div className="flex gap-3">
             <Link
               href="/dashboard"
               className="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg transition"
@@ -140,11 +140,11 @@ export default function EntrenamientosPage() {
             </Link>
             <Link
               href="/entrenamientos/nuevo"
-             
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
+            >
               + Nuevo
-
             </Link>
-                        <button
+            <button
               onClick={downloadCSV}
               className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition"
             >

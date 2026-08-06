@@ -89,8 +89,8 @@ export default function EntrenamientosPage() {
     activities.reduce((sum, a) => sum + (Number(a.duracion_minutos) || 0), 0) / 60
   )
     const downloadCSV = () => {
-    const headers = ['Fecha', 'Tipo', 'Titulo', 'Distancia_km', 'Duracion_min', 'Velocidad_media_kmh', 'Elevacion_m']
-    const rows = activities.map((a) => [
+     const headers = ['Fecha', 'Tipo', 'Titulo', 'Distancia_km', 'Duracion_min', 'Velocidad_media_kmh', 'Elevacion_m', 'FC_media', 'Notas']
+       const rows = activities.map((a) => [
       a.fecha,
       a.tipo,
       `"${(a.titulo || '').replace(/"/g, '""')}"`,
@@ -98,6 +98,8 @@ export default function EntrenamientosPage() {
       a.duracion_minutos || 0,
       a.velocidad_media_kmh || '',
       a.elevacion_m || 0,
+      a.fc_media || '',
+      `"${(a.notas || '').replace(/"/g, '""')}"`,
     ])
 
     const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')

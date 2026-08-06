@@ -26,11 +26,10 @@ export default function NuevoEntrenamientoPage() {
     elevacion_m: '',
     velocidad_media_kmh: '',
     fc_media: '',
+    notas: '',
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -55,6 +54,7 @@ export default function NuevoEntrenamientoPage() {
       elevacion_m: form.elevacion_m ? parseFloat(form.elevacion_m) : 0,
       velocidad_media_kmh: form.velocidad_media_kmh ? parseFloat(form.velocidad_media_kmh) : null,
       fc_media: form.fc_media ? parseInt(form.fc_media) : null,
+            notas: form.notas || null,
     }
 
     const { error } = await supabase.from('activities').insert(dataToInsert)
@@ -220,7 +220,18 @@ export default function NuevoEntrenamientoPage() {
               />
             </div>
           </div>
-
+          {/* Notas */}
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">Notas / Sensaciones</label>
+            <textarea
+              name="notas"
+              value={form.notas}
+              onChange={handleChange}
+              placeholder="Ej: Intervalos 5x1km. FC subió a 165 en subidas. Rodilla derecha molesta al final."
+              rows={3}
+              className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 resize-none"
+            />
+          </div>
           {/* Botón guardar */}
           <button
             type="submit"

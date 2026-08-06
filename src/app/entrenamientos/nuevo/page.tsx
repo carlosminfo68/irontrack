@@ -220,7 +220,7 @@ export default function NuevoEntrenamientoPage() {
               />
             </div>
           </div>
-          {/* Notas */}
+                    {/* Notas */}
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">Notas / Sensaciones</label>
             <textarea

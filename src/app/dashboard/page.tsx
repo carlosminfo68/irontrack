@@ -185,6 +185,12 @@ export default function DashboardPage() {
           >
             📅 Planificación
           </Link>
+                    <Link
+            href="/consejos"
+            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg font-semibold transition"
+          >
+            💡 Consejos
+          </Link>
 
           {!stravaConnected ? (
             <a

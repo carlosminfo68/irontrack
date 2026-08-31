@@ -64,104 +64,115 @@ export default function ConsejosPage() {
     setLoading(false);
   }
 
-  function getTips(stats: WeeklyStats) {
+    function getTips(stats: WeeklyStats) {
     const tips: { titulo: string; mensaje: string; color: string }[] = [];
 
-    if (stats.swim_km < 4) {
+    // NATACIÓN (objetivo: 4-6 km/semana para 70.3)
+    if (stats.swim_km < 2) {
       tips.push({
         titulo: '🏊 Natación: volumen bajo',
-        mensaje: `Llevas ${stats.swim_km.toFixed(1)} km esta semana. Para el Ironman 51.50 necesitas ~6-10 km/semana. Intenta sumar 2 sesiones más de técnica.`,
+        mensaje: `Llevas ${stats.swim_km.toFixed(1)} km esta semana. Para el 51.50 necesitas ~4-6 km/semana. Intenta nadar 2-3 veces por semana, enfocado en técnica.`,
         color: 'bg-red-100 border-red-400 text-red-800',
       });
-    } else if (stats.swim_km >= 6 && stats.swim_km <= 10) {
+    } else if (stats.swim_km >= 4 && stats.swim_km <= 6) {
       tips.push({
         titulo: '🏊 Natación: en rango óptimo',
-        mensaje: `¡Excelente! ${stats.swim_km.toFixed(1)} km esta semana. Mantén la frecuencia y añade series de velocidad si te sientes cómodo.`,
+        mensaje: `¡Excelente! ${stats.swim_km.toFixed(1)} km esta semana. Mantén 2-3 sesiones y añade series de velocidad de vez en cuando.`,
         color: 'bg-green-100 border-green-400 text-green-800',
       });
-    } else if (stats.swim_km > 12) {
+    } else if (stats.swim_km > 8) {
       tips.push({
         titulo: '🏊 Natación: volumen alto',
-        mensaje: `${stats.swim_km.toFixed(1)} km es mucho para esta etapa. Asegúrate de descansar y no acumular fatiga innecesaria.`,
+        mensaje: `${stats.swim_km.toFixed(1)} km es alto para 70.3. No acumules fatiga innecesaria; prioriza técnica sobre metros.`,
         color: 'bg-yellow-100 border-yellow-400 text-yellow-800',
       });
     } else {
       tips.push({
         titulo: '🏊 Natación: progresando',
-        mensaje: `Llevas ${stats.swim_km.toFixed(1)} km. Estás cerca del rango óptimo (6-10 km). Añade una sesión más esta semana.`,
+        mensaje: `Llevas ${stats.swim_km.toFixed(1)} km. Estás cerca del rango óptimo (4-6 km). Añade una sesión más de técnica.`,
         color: 'bg-blue-100 border-blue-400 text-blue-800',
       });
     }
 
-    if (stats.bike_km < 100) {
+    // CICLISMO (objetivo: 100-180 km/semana para 70.3)
+    if (stats.bike_km < 60) {
       tips.push({
         titulo: '🚴 Ciclismo: volumen bajo',
-        mensaje: `Llevas ${stats.bike_km.toFixed(1)} km. Para 90 km de competencia, apunta a 150-250 km/semana. Aumenta progresivamente en +10% semanal.`,
+        mensaje: `Llevas ${stats.bike_km.toFixed(1)} km. Para 90 km de bici en competencia, apunta a 100-180 km/semana. Aumenta progresivamente en +10% semanal.`,
         color: 'bg-red-100 border-red-400 text-red-800',
       });
-    } else if (stats.bike_km >= 150 && stats.bike_km <= 250) {
+    } else if (stats.bike_km >= 100 && stats.bike_km <= 180) {
       tips.push({
         titulo: '🚴 Ciclismo: en rango óptimo',
-        mensaje: `¡Muy bien! ${stats.bike_km.toFixed(1)} km esta semana. Es un buen momento para incluir series de umbral o rodillo con potencia.`,
+        mensaje: `¡Muy bien! ${stats.bike_km.toFixed(1)} km esta semana. Es un buen momento para incluir una salida larga de 60-80 km los fines de semana.`,
         color: 'bg-green-100 border-green-400 text-green-800',
       });
-    } else if (stats.bike_km > 300) {
+    } else if (stats.bike_km > 220) {
       tips.push({
         titulo: '🚴 Ciclismo: volumen alto',
-        mensaje: `${stats.bike_km.toFixed(1)} km puede ser excesivo sin descanso. Prioriza calidad sobre cantidad y monitorea fatiga.`,
+        mensaje: `${stats.bike_km.toFixed(1)} km puede ser excesivo para 70.3 sin descanso. Prioriza calidad sobre cantidad y monitorea fatiga.`,
         color: 'bg-yellow-100 border-yellow-400 text-yellow-800',
       });
     } else {
       tips.push({
         titulo: '🚴 Ciclismo: progresando',
-        mensaje: `Llevas ${stats.bike_km.toFixed(1)} km. Buena base, intenta llegar a 150 km con una salida larga de fin de semana.`,
+        mensaje: `Llevas ${stats.bike_km.toFixed(1)} km. Buena base, intenta llegar a 100 km con una salida larga de fin de semana.`,
         color: 'bg-blue-100 border-blue-400 text-blue-800',
       });
     }
 
-    if (stats.run_km < 25) {
+    // RUNNING (objetivo: 25-40 km/semana para 70.3)
+    if (stats.run_km < 15) {
       tips.push({
         titulo: '🏃 Running: volumen bajo',
-        mensaje: `Llevas ${stats.run_km.toFixed(1)} km. Para medio maratón (21.1 km), necesitas 40-60 km/semana. No subas más de 10% por semana.`,
+        mensaje: `Llevas ${stats.run_km.toFixed(1)} km. Para 21.1 km de carrera, necesitas 25-40 km/semana. No subas más de 10% por semana.`,
         color: 'bg-red-100 border-red-400 text-red-800',
       });
-    } else if (stats.run_km >= 40 && stats.run_km <= 60) {
+    } else if (stats.run_km >= 25 && stats.run_km <= 40) {
       tips.push({
         titulo: '🏃 Running: en rango óptimo',
-        mensaje: `¡Perfecto! ${stats.run_km.toFixed(1)} km esta semana. Mantén una carrera larga de 12-15 km y añade fartlek.`,
+        mensaje: `¡Perfecto! ${stats.run_km.toFixed(1)} km esta semana. Mantén una carrera larga de 10-12 km y añade fartlek o cuestas.`,
         color: 'bg-green-100 border-green-400 text-green-800',
       });
-    } else if (stats.run_km > 70) {
+    } else if (stats.run_km > 50) {
       tips.push({
         titulo: '🏃 Running: volumen alto',
-        mensaje: `${stats.run_km.toFixed(1)} km es alto. El running impacta mucho. Asegúrate de tener 1-2 días de descanso o natación suave.`,
+        mensaje: `${stats.run_km.toFixed(1)} km es alto para 70.3. El running impacta mucho. Asegúrate de tener 1-2 días de descanso o natación suave.`,
         color: 'bg-yellow-100 border-yellow-400 text-yellow-800',
       });
     } else {
       tips.push({
         titulo: '🏃 Running: progresando',
-        mensaje: `Llevas ${stats.run_km.toFixed(1)} km. Buen trabajo, intenta llegar a 40 km con una sesión de calidad (intervalos o cuestas).`,
+        mensaje: `Llevas ${stats.run_km.toFixed(1)} km. Buen trabajo, intenta llegar a 25 km con una sesión de calidad (intervalos o cuestas).`,
         color: 'bg-blue-100 border-blue-400 text-blue-800',
       });
     }
 
+    // GENERAL
     const totalHoras = stats.total_min / 60;
-    if (totalHoras < 6) {
+    if (totalHoras < 4) {
       tips.push({
         titulo: '⏱️ Volumen total semanal',
-        mensaje: `Llevas ${totalHoras.toFixed(1)} horas. Para Ironman 51.50, apunta a 8-12 horas/semana en fase de construcción.`,
+        mensaje: `Llevas ${totalHoras.toFixed(1)} horas. Para 51.50, apunta a 6-9 horas/semana en fase de construcción.`,
         color: 'bg-orange-100 border-orange-400 text-orange-800',
       });
-    } else if (totalHoras >= 8 && totalHoras <= 14) {
+    } else if (totalHoras >= 6 && totalHoras <= 9) {
       tips.push({
         titulo: '⏱️ Volumen total semanal',
         mensaje: `¡Excelente! ${totalHoras.toFixed(1)} horas esta semana. Distribución ideal para Ironman 51.50.`,
         color: 'bg-green-100 border-green-400 text-green-800',
       });
+    } else if (totalHoras > 12) {
+      tips.push({
+        titulo: '⏱️ Volumen total semanal',
+        mensaje: `${totalHoras.toFixed(1)} horas es mucho para 70.3. Revisa recuperación y descanso para evitar sobreentrenamiento.`,
+        color: 'bg-yellow-100 border-yellow-400 text-yellow-800',
+      });
     }
 
     return tips;
   }
+
 
   if (loading) {
     return (
@@ -215,13 +226,13 @@ export default function ConsejosPage() {
           ))}
         </div>
 
-        <div className="mt-8 bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-3">📋 Rangos objetivo (Ironman 51.50)</h2>
+                <div className="mt-8 bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-3">📋 Rangos objetivo (Ironman 51.50 · 70.3)</h2>
           <ul className="space-y-2 text-sm text-gray-600">
-            <li>🏊 <strong>Natación:</strong> 6-10 km/semana (3-5 sesiones)</li>
-            <li>🚴 <strong>Ciclismo:</strong> 150-250 km/semana (3-4 sesiones)</li>
-            <li>🏃 <strong>Running:</strong> 40-60 km/semana (3-4 sesiones)</li>
-            <li>⏱️ <strong>Total semanal:</strong> 8-12 horas en fase de construcción</li>
+            <li>🏊 <strong>Natación:</strong> 4-6 km/semana (2-3 sesiones)</li>
+            <li>🚴 <strong>Ciclismo:</strong> 100-180 km/semana (2-4 sesiones)</li>
+            <li>🏃 <strong>Running:</strong> 25-40 km/semana (3-4 sesiones)</li>
+            <li>⏱️ <strong>Total semanal:</strong> 6-9 horas en fase de construcción</li>
           </ul>
         </div>
       </div>

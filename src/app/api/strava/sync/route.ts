@@ -114,6 +114,10 @@ export async function GET(request: NextRequest) {
         elevacion_m: elevacionM,
         velocidad_media_kmh: velocidadMedia,
         fc_media: act.average_heartrate || null,
+                fc_max: act.max_heartrate || null,
+        cadencia_media: act.average_cadence || null,
+        potencia_media_w: act.weighted_average_watts || act.average_watts || null,
+        esfuerzo: act.suffer_score || null,
       }
     })
 

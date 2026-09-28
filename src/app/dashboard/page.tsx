@@ -208,14 +208,14 @@ export default function DashboardPage() {
                 🔄 Sincronizar Strava
               </button>
               <span className="px-4 py-3 bg-orange-600/20 text-orange-400 rounded-lg flex items-center gap-2">
-                ✅ Strava Conectado
-                <Link
+  ✅ Strava Conectado
+</span>
+<Link
   href="/progreso"
   className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 rounded-lg font-semibold transition"
 >
   📊 Progreso
 </Link>
-              </span>
             </>
           )}
         </div>
